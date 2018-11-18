@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace lab_2
 {
-    class Category
+    class Category : CommonShopObject
     {
-        string nameCategory;
         int countBook;
         List<Book> bookList;
 
         public Category()
         {
-            nameCategory = "sec_";
+            name = "sec_"+id;
+            id++;
             bookList = new List<Book>();
             countBook++;
         }
@@ -41,16 +41,6 @@ namespace lab_2
             {
                 Console.WriteLine("{0}) {1}", i, item);
                 i++;
-            }
-        }
-
-        public void Update()
-        {
-            Console.WriteLine("Enter name");
-            string tmp_name = Console.ReadLine();
-            if (tmp_name.Trim() != "")
-            {
-                nameCategory = tmp_name;
             }
         }
 

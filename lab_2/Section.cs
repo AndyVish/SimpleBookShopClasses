@@ -8,12 +8,11 @@ namespace lab_2
 {
     class Section : CommonShopObject
     {
-        string nameSection;
         int countCategory;
         List<Category> categoryList;
         public Section()
         {
-            nameSection = "sec_";
+            name = "sec_"+id;
             categoryList = new List<Category>();
             countCategory++;
         }
@@ -24,11 +23,13 @@ namespace lab_2
             Category category = new Category();
             category.Update();
             categoryList.Add(category);
+            countCategory++;
         }
 
         private void CategoryRemove(int index)
         {
             categoryList.Remove(categoryList[index]);
+            countCategory--;
         }
 
         public void ShowCategoryList()
@@ -41,17 +42,6 @@ namespace lab_2
             }
         }
 
-        public void Update()
-        {
-            Console.WriteLine("Enter name");
-            string tmp_name = Console.ReadLine();
-            if (tmp_name.Trim() != "")
-            {
-                nameSection = tmp_name;
-            }
-        }
-
-  
     }
 }
 
