@@ -48,6 +48,7 @@ namespace lab_2
                             case ("3"): Console.WriteLine("Update"); break;
                             case ("4"):
                             default:
+                                shop.ShowSectionList();
                                 break;
                         }
                     }

@@ -36,7 +36,8 @@ namespace lab_2
             int i = 1;
             foreach (var item in sectionList)
             {
-                Console.WriteLine("{0}) {1}", i, item);
+                Console.Write($"{i})");
+                item.Show();
             }
         }
 
