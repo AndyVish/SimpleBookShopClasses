@@ -20,13 +20,15 @@ namespace lab_2
         public int CountShop { get { return countSection; } }
         public int CountSection{ get { return countSection; } }
 
-        public void Add(Object obj)
+        public void Add(Section section)
         {
-           
+            sectionList.Add(section);
+            countSection++;
         }
 
-        public void Remove(Object obj) {
-
+        public void Remove(Section section) {
+            sectionList.Remove(section);
+            countSection++;
         }
 
         public void ShowSectionList()

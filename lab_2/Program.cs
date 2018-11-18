@@ -47,8 +47,6 @@ namespace lab_2
                             case ("2"): Console.WriteLine("Remove"); break;
                             case ("3"): Console.WriteLine("Update"); break;
                             case ("4"):
-                               
-
                             default:
                                 break;
                         }
