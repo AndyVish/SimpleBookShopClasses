@@ -8,11 +8,12 @@ namespace lab_2
 {
     class Section : CommonShopObject
     {
+        string nameSection;
         int countCategory;
         List<Category> categoryList;
         public Section()
         {
-            
+            nameSection = "sec_";
             categoryList = new List<Category>();
             countCategory++;
         }
@@ -25,52 +26,32 @@ namespace lab_2
             categoryList.Add(category);
         }
 
-        private void Remove(int index)
+        private void CategoryRemove(int index)
         {
             categoryList.Remove(categoryList[index]);
         }
-        // public override void Show() { Console.WriteLine(name); }
-        //public override void Update()
-        //{
-        //    Console.WriteLine("Enter new name");
-        //    string tmp_name = Console.ReadLine();
-        //    if (tmp_name.Trim() != "")
-        //    {
-        //        name = tmp_name;
-        //    }
-        //}
 
-
-
-
-        //public string Name { get { return name; } }
-
-        public override string ToString()
+        public void ShowCategoryList()
         {
-            //return base.ToString();
-            return name;
+            int i = 1;
+            foreach (var item in categoryList)
+            {
+                Console.WriteLine("{0}) {1}", i, item);
+                i++;
+            }
         }
-        //    string sectionName;
-        //    public Section() { }
-        //    //List<>
-        //    public Section(string name, int id, string sectName) : base(name, id)
-        //    {
-        //        sectionName = sectName;
-        //    }
 
-        //    string GetSection()
-        //    {
-        //        return sectionName;
-        //    }
+        public void Update()
+        {
+            Console.WriteLine("Enter name");
+            string tmp_name = Console.ReadLine();
+            if (tmp_name.Trim() != "")
+            {
+                nameSection = tmp_name;
+            }
+        }
 
-        //    public void Show()
-        //    {
-        //        Console.WriteLine("id = {0}, name = {1}, count = {2}, secName = {3}", Id, Name, Count, GetSection());
-        //    }
-        //    public void Update()
-        //    {
-        //        Console.WriteLine("Update");
-        //    }
+  
     }
 }
 

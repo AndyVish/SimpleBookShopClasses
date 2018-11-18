@@ -8,7 +8,6 @@ namespace lab_2
 {
     class Shop
     {
-        
         int countSection;
         int countCategory;
         List<Section> sectionList;
