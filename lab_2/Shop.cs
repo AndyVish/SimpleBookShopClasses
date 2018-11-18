@@ -36,10 +36,6 @@ namespace lab_2
             
         }
 
-        public void ShowCategoryList()
-        {
-
-        }
                
     }
 
