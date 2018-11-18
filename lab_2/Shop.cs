@@ -33,7 +33,11 @@ namespace lab_2
 
         public void ShowSectionList()
         {
-            
+            int i = 1;
+            foreach (var item in sectionList)
+            {
+                Console.WriteLine("{0}) {1}", i, item);
+            }
         }
 
                
