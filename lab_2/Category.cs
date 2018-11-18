@@ -33,5 +33,26 @@ namespace lab_2
             bookList.Remove(bookList[index]);
         }
 
+
+        public void ShowBookList()
+        {
+            int i = 1;
+            foreach (var item in bookList)
+            {
+                Console.WriteLine("{0}) {1}", i, item);
+                i++;
+            }
+        }
+
+        public void Update()
+        {
+            Console.WriteLine("Enter name");
+            string tmp_name = Console.ReadLine();
+            if (tmp_name.Trim() != "")
+            {
+                nameCategory = tmp_name;
+            }
+        }
+
     }
 }
