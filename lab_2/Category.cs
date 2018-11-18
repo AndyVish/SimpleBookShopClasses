@@ -8,6 +8,17 @@ namespace lab_2
 {
     class Category
     {
+        string nameCategory;
+        int countBook;
+        List<Book> bookList;
 
+        public Category()
+        {
+            nameCategory = "sec_";
+            bookList = new List<Book>();
+            countBook++;
+        }
+
+        
     }
 }
