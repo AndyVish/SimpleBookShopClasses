@@ -43,7 +43,22 @@ namespace lab_2
                     {
                         switch (exit)
                         {
-                            case ("1"):     break;
+                            case ("1"):
+                                Console.WriteLine("What add: Section[1], Category[2], Book[3]");
+                                string choose = Console.ReadLine();
+                                if (choose == "1")
+                                {
+                                    shop.Add();
+                                }
+                                else if (choose == "2")
+                                {
+                                    shop.AddCategory();
+                                }
+                                else if (choose == "3")
+                                {
+                                    shop.AddBook();
+                                }
+                                break;
                             case ("2"): Console.WriteLine("Remove"); break;
                             case ("3"): Console.WriteLine("Update"); break;
                             case ("4"):
@@ -57,8 +72,8 @@ namespace lab_2
                         Console.WriteLine("You havent any section. Create new (y/n)?");
                         if (Console.ReadKey(true).KeyChar == 'y')
                         {
-                            Section section = new Section();
-                            shop.Add(section);
+                            //Section section = new Section();
+                            shop.Add();
                         }
                     }
 
