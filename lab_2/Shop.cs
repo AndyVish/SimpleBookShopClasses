@@ -42,6 +42,31 @@ namespace lab_2
             }
         }
 
+        public void ShowCategory()
+        {
+            int lenListSection = ShowSectionList();
+            Console.WriteLine("Choose number of section ->");
+            var userChoose = CheckInput(lenListSection);
+
+            if (userChoose != -1)
+            {
+                sectionList[userChoose].ShowCategoryList();
+            }
+        }
+
+        public void RemoveCategory()
+        {
+            int lenListSection = ShowSectionList();
+            Console.WriteLine("Choose number of section ->");
+            var userChoose = CheckInput(lenListSection);
+
+            if (userChoose != -1)
+            {
+                //sectionList[userChoose].CategoryRemove();
+
+            }
+        }
+
         public void AddBook()
         {
 
@@ -63,6 +88,7 @@ namespace lab_2
             }
             return i;
         }
+
 
         public int CheckInput(int countObj)
         {

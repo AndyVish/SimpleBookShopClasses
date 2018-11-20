@@ -26,7 +26,7 @@ namespace lab_2
             countCategory++;
         }
 
-        private void CategoryRemove(int index)
+        public void CategoryRemove(int index)
         {
             categoryList.Remove(categoryList[index]);
             countCategory--;
