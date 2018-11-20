@@ -19,6 +19,14 @@ namespace lab_2
             countBook++;
         }
 
+        public Category(string name)
+        {
+            this.name = name;
+            id++;
+            bookList = new List<Book>();
+            countBook++;
+        }
+
         public int CountBook { get { return countBook; } }
 
         private void BookAdd()

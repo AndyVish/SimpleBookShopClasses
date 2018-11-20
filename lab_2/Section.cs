@@ -16,7 +16,13 @@ namespace lab_2
             categoryList = new List<Category>();
             countCategory++;
         }
-        
+
+        public Section(string name)
+        {
+            this.name = name;
+            categoryList = new List<Category>();
+            countCategory++;
+        }
         public int CountCategory { get { return countCategory; } }
 
         public void CategoryAdd()
@@ -27,6 +33,12 @@ namespace lab_2
             countCategory++;
         }
 
+        public void CategoryAdd(Category k)
+        {
+            
+            categoryList.Add(k);
+            countCategory++;
+        }
         public void CategoryRemove(int index)
         {
             categoryList.Remove(categoryList[index]);

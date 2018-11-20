@@ -49,7 +49,7 @@ namespace lab_2
                                 choose = Console.ReadLine();
                                 if (choose == "1")
                                 {
-                                    shop.Add();
+                                    shop.AddSection();
                                 }
                                 else if (choose == "2")
                                 {
@@ -124,7 +124,7 @@ namespace lab_2
                         if (Console.ReadKey(true).KeyChar == 'y')
                         {
                             //Section section = new Section();
-                            shop.Add();
+                            shop.AddSection();
                         }
                     }
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab_2
 {
+   
     class Shop
     {
         int countSection;
@@ -13,25 +14,93 @@ namespace lab_2
         
         public Shop()
         {
-            countSection = 0;
+            ///!!!!  countSection = 2; - origenal
+            countSection = 2;
             sectionList = new List<Section>();
+
+            sectionList.Add(new Section("Информационные технологии"));
+            sectionList.Add(new Section("Ин-яз"));
+                       
+            Category k1 = new Category("Англ.");
+            Category k2 = new Category("Фрфнц.");
+            Category k3 = new Category("Итал.");
+            sectionList[1].CategoryAdd(k1);
+            sectionList[1].CategoryAdd(k2);
+            sectionList[1].CategoryAdd(k3);
+
+
+            Category k4 = new Category("С++");
+            Category k5 = new Category("Сsharp.");
+            sectionList[0].CategoryAdd(k4);
+            sectionList[0].CategoryAdd(k5);
+
+
         }
 
         public int CountSection{ get { return countSection; } }
 
-        public void Add()
+
+        //============= SECTION BEGIN============
+        public void AddSection()
         {
             var section = new Section();
             section.Update();
             sectionList.Add(section);
             countSection++;
+            Console.WriteLine(new string('-', 20));
         }
 
+        public void AddSection(Section s)
+        {
+            sectionList.Add(s);
+            countSection++;
+        }
+
+        public void RemoveSecton()
+        {
+            if (countSection != 0)
+            {
+                PutChooseMessage();
+                var userChoose = CheckInput(countSection);
+                if (userChoose != -1)
+                {
+                    sectionList[userChoose].CategoryAdd();
+                }
+            }
+            else
+            {
+                Console.WriteLine("No items for removing!");
+                return;
+            }
+
+            Console.WriteLine(new string('-', 20));
+        }
+
+        public int ShowSectionList()
+        {
+            int i = 0;
+            foreach (var item in sectionList)
+            {
+                i++;
+                Console.Write($"{i})");
+                item.Show();
+            }
+            Console.WriteLine(new string('-', 20));
+            return i;
+        }
+
+        public void UpdateSection()
+        {
+            
+            
+        }
+
+
+        //============= CATEGORY ============
         public void AddCategory()
         {
-            int lenListSection = ShowSectionList();
-            Console.WriteLine("Choose number of section ->");
-            var userChoose = CheckInput(lenListSection);
+            PutChooseMessage();
+            var userChoose = CheckInput(CountSection);
 
             if (userChoose != -1)
             {
@@ -41,8 +110,7 @@ namespace lab_2
 
         public void ShowCategory()
         {
-            ShowSectionList();
-            Console.WriteLine("Choose number of section ->");
+            PutChooseMessage();
             var userChoose = CheckInput(CountSection);
 
             if (userChoose != -1)
@@ -53,8 +121,7 @@ namespace lab_2
 
         public void RemoveCategory()
         {
-            ShowSectionList();
-            Console.WriteLine("Choose number of section ->");
+            PutChooseMessage();
             var userChoose = CheckInput(CountSection);
 
             if (userChoose != -1)
@@ -84,19 +151,7 @@ namespace lab_2
             countSection++;
         }
 
-        public int ShowSectionList()
-        {
-            int i = 0;
-            foreach (var item in sectionList)
-            {
-                i++;
-                Console.Write($"{i})");
-                item.Show();
-            }
-            return i;
-        }
-
-
+        
         public int CheckInput(int countObj)
         {
             int exit = 1;
@@ -133,7 +188,12 @@ namespace lab_2
 
             return choose;
         }
-               
+
+        public void PutChooseMessage()
+        {
+                ShowSectionList();
+                Console.Write("Choose number of section ->");
+        }
     }
 
 } 
