@@ -17,7 +17,6 @@ namespace lab_2
             sectionList = new List<Section>();
         }
 
-        public int CountShop { get { return countSection; } }
         public int CountSection{ get { return countSection; } }
 
         public void Add()
@@ -36,17 +35,15 @@ namespace lab_2
 
             if (userChoose != -1)
             {
-                
-                sectionList[userChoose].CategoryAdd();
-                
+             sectionList[userChoose].CategoryAdd();                
             }
         }
 
         public void ShowCategory()
         {
-            int lenListSection = ShowSectionList();
+            ShowSectionList();
             Console.WriteLine("Choose number of section ->");
-            var userChoose = CheckInput(lenListSection);
+            var userChoose = CheckInput(CountSection);
 
             if (userChoose != -1)
             {
@@ -56,14 +53,24 @@ namespace lab_2
 
         public void RemoveCategory()
         {
-            int lenListSection = ShowSectionList();
+            ShowSectionList();
             Console.WriteLine("Choose number of section ->");
-            var userChoose = CheckInput(lenListSection);
+            var userChoose = CheckInput(CountSection);
 
             if (userChoose != -1)
             {
-                //sectionList[userChoose].CategoryRemove();
-
+                var section = sectionList[userChoose];
+                if(section.CountCategory == 0)
+                {
+                    Console.WriteLine("No category for removing!");
+                    return;
+                }
+                section.ShowCategoryList();
+                userChoose = CheckInput(section.CountCategory);
+                if (userChoose != -1)
+                {
+                    section.CategoryRemove(userChoose);
+                }
             }
         }
 

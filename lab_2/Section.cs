@@ -34,11 +34,11 @@ namespace lab_2
 
         public void ShowCategoryList()
         {
-            int i = 1;
+            int i = 0;
             foreach (var item in categoryList)
             {
-                Console.WriteLine("{0}) {1}", i, item);
                 i++;
+                Console.WriteLine("{0}) {1}", i, item);        
             }
         }
 
