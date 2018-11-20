@@ -18,7 +18,7 @@ namespace lab_2
         }
         
         public int CountCategory { get { return countCategory; } }
-        private void CategoryAdd()
+        public void CategoryAdd()
         {
             Category category = new Category();
             category.Update();

@@ -30,9 +30,16 @@ namespace lab_2
 
         public void AddCategory()
         {
-            ShowSectionList();
+            int lenListSection = ShowSectionList();
             Console.WriteLine("Choose number of section ->");
+            var userChoose = CheckInput(lenListSection);
 
+            if (userChoose != -1)
+            {
+                
+                sectionList[userChoose].CategoryAdd();
+                
+            }
         }
 
         public void AddBook()
@@ -45,38 +52,52 @@ namespace lab_2
             countSection++;
         }
 
-        public void ShowSectionList()
+        public int ShowSectionList()
         {
-            int i = 1;
+            int i = 0;
             foreach (var item in sectionList)
             {
+                i++;
                 Console.Write($"{i})");
                 item.Show();
             }
+            return i;
         }
 
         public int CheckInput(int countObj)
         {
             int exit = 1;
-            int  choose;
+            int  choose=-1;
             while (exit == 1)
             {
                 if (int.TryParse(Console.ReadLine(), out choose))
                 {
                     if (choose >= 0 && choose <= countObj)
                     {
-                        return choose;
+                        exit = 0;
                     }
                     else
                     {
-                        Console.WriteLine("Try again? (y/n)");
+                        Console.WriteLine("Entered uncorrect number. Try again? (y/n)", countObj);
                         if (Console.ReadLine() == "n")
                         {
-                            return -1;
+                            exit = 0;
+                            choose =  -1;
                         }
                     }
                 }
+                else
+                {
+                    Console.WriteLine("Entered uncorrect number. Try again? (y/n)");
+                    if (Console.ReadLine() == "n")
+                    {
+                        exit = 0;
+                        choose = -1;
+                    }
+                }
             }
+
+            return choose;
         }
                
     }
