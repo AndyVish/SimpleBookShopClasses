@@ -30,7 +30,9 @@ namespace lab_2
 
         public void AddCategory()
         {
-            
+            ShowSectionList();
+            Console.WriteLine("Choose number of section ->");
+
         }
 
         public void AddBook()
@@ -53,6 +55,29 @@ namespace lab_2
             }
         }
 
+        public int CheckInput(int countObj)
+        {
+            int exit = 1;
+            int  choose;
+            while (exit == 1)
+            {
+                if (int.TryParse(Console.ReadLine(), out choose))
+                {
+                    if (choose >= 0 && choose <= countObj)
+                    {
+                        return choose;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Try again? (y/n)");
+                        if (Console.ReadLine() == "n")
+                        {
+                            return -1;
+                        }
+                    }
+                }
+            }
+        }
                
     }
 
