@@ -37,6 +37,7 @@ namespace lab_2
                 ShowMenu();
 
                 exit = Console.ReadLine();
+                string choose = "";
                 if (exit != "5")
                 {
                     if (shop.CountSection > 0)
@@ -45,7 +46,7 @@ namespace lab_2
                         {
                             case ("1"):
                                 Console.WriteLine("What add: Section[1], Category[2], Book[3]");
-                                string choose = Console.ReadLine();
+                                choose = Console.ReadLine();
                                 if (choose == "1")
                                 {
                                     shop.Add();
@@ -56,14 +57,64 @@ namespace lab_2
                                 }
                                 else if (choose == "3")
                                 {
-                                    shop.AddBook();
+                                  //  shop.AddBook();
                                 }
                                 break;
-                            case ("2"): Console.WriteLine("Remove"); break;
-                            case ("3"): Console.WriteLine("Update"); break;
+                            case ("2"):
+                                //Console.WriteLine("Remove");
+                                Console.WriteLine("What remove: Section[1], Category[2], Book[3]");
+                                choose = Console.ReadLine();
+                                if (choose == "1")
+                                {
+                                   // shop.Remove();
+                                }
+                                else if (choose == "2")
+                                {
+                                    shop.RemoveCategory();
+                                }
+                                else if (choose == "3")
+                                {
+                                   // shop.AddBook();
+                                }
+                                break;
+
+                            case ("3"):
+                                //Console.WriteLine("Update");
+                                //Console.WriteLine("What show: Section[1], Category[2], Book[3]");
+                                //choose = Console.ReadLine();
+                                //if (choose == "1")
+                                //{
+                                //    shop.ShowSectionList();
+                                //}
+                                //else if (choose == "2")
+                                //{
+                                //    shop.ShowCategory();
+                                //}
+                                //else if (choose == "3")
+                                //{
+                                //    //shop.AddBook();
+                                //}
+                                
+                                break;
+
                             case ("4"):
+                                Console.WriteLine("What show: Section[1], Category[2], Book[3]");
+                                choose = Console.ReadLine();
+                                if (choose == "1")
+                                {
+                                    shop.ShowSectionList();
+                                }
+                                else if (choose == "2")
+                                {
+                                    shop.ShowCategory();
+                                }
+                                else if (choose == "3")
+                                {
+                                    //shop.AddBook();
+                                }
+                                break;
                             default:
-                                shop.ShowSectionList();
+                                //shop.ShowSectionList();
                                 break;
                         }
                     }

@@ -108,6 +108,7 @@ namespace lab_2
                     if (choose >= 0 && choose <= countObj)
                     {
                         exit = 0;
+                        choose--;
                     }
                     else
                     {

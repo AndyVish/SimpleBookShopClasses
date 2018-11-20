@@ -18,6 +18,7 @@ namespace lab_2
         }
         
         public int CountCategory { get { return countCategory; } }
+
         public void CategoryAdd()
         {
             Category category = new Category();
@@ -32,13 +33,15 @@ namespace lab_2
             countCategory--;
         }
 
+        
         public void ShowCategoryList()
         {
             int i = 0;
             foreach (var item in categoryList)
             {
                 i++;
-                Console.WriteLine("{0}) {1}", i, item);        
+                Console.Write("{0})", i);
+                    item.Show();        
             }
         }
 
