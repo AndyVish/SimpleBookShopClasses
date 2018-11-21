@@ -45,7 +45,11 @@ namespace lab_2
             countCategory--;
         }
 
-        
+        public void CategoryUpdate(int index)
+        {
+            categoryList[index].Update();
+        }
+
         public void ShowCategoryList()
         {
             int i = 0;

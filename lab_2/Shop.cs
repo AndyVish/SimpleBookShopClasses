@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace lab_2
 {
-   
+    enum Actions {Add, Remove, Update, Show }; 
+
     class Shop
     {
         int countSection;
@@ -56,23 +57,33 @@ namespace lab_2
             countSection++;
         }
 
-        public void RemoveSecton()
+
+        bool GetIndexSection(out int index)
         {
+            index = -1;
             if (countSection != 0)
             {
                 PutChooseMessage();
-                var userChoose = CheckInput(countSection);
-                if (userChoose != -1)
+                index = CheckInput(countSection);
+                if (index != -1)
                 {
-                    sectionList[userChoose].CategoryAdd();
+                    return true;
                 }
             }
             else
             {
-                Console.WriteLine("No items for removing!");
-                return;
+                Console.WriteLine("No items!");
             }
+            return false;
+        }
 
+        public void RemoveSecton()
+        {
+            if (GetIndexSection(out int index))
+            {
+                sectionList.Remove(sectionList[index]);
+                countSection--;
+            }
             Console.WriteLine(new string('-', 20));
         }
 
@@ -84,15 +95,18 @@ namespace lab_2
                 i++;
                 Console.Write($"{i})");
                 item.Show();
-            }
-            Console.WriteLine(new string('-', 20));
+            }            
             return i;
         }
 
         public void UpdateSection()
         {
-            
-            
+            if (GetIndexSection(out int index))
+            {
+                sectionList[index].Update();
+                countSection--;
+            }
+            Console.WriteLine(new string('-', 20));
         }
 
 
@@ -119,38 +133,42 @@ namespace lab_2
             }
         }
 
+        bool GetIndexCategory(out int index, Section sect)
+        {
+            index = -1;                
+            if (sect.CountCategory-1 != 0)
+            {
+                sect.ShowCategoryList();
+                index = CheckInput(sect.CountCategory);
+                if (index != -1)
+                {
+                    return true;
+                }                
+            }
+            Console.WriteLine("No category for removing!");
+            return false;
+        }
+
         public void RemoveCategory()
         {
-            PutChooseMessage();
-            var userChoose = CheckInput(CountSection);
-
-            if (userChoose != -1)
+            if (GetIndexSection(out int tmpId))
             {
-                var section = sectionList[userChoose];
-                if(section.CountCategory == 0)
+                var section = sectionList[tmpId];
+                if (GetIndexCategory(out int index, section))
                 {
-                    Console.WriteLine("No category for removing!");
-                    return;
-                }
-                section.ShowCategoryList();
-                userChoose = CheckInput(section.CountCategory);
-                if (userChoose != -1)
-                {
-                    section.CategoryRemove(userChoose);
+                    section.CategoryRemove(index);
                 }
             }
         }
 
+
+        //============= BOOK ============
         public void AddBook()
         {
 
         }
 
-        public void Remove(Section section) {
-            sectionList.Remove(section);
-            countSection++;
-        }
-
+        
         
         public int CheckInput(int countObj)
         {

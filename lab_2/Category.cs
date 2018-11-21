@@ -29,6 +29,8 @@ namespace lab_2
 
         public int CountBook { get { return countBook; } }
 
+
+
         private void BookAdd()
         {
             Book book = new Book();
@@ -44,11 +46,12 @@ namespace lab_2
 
         public void ShowBookList()
         {
-            int i = 1;
+            int i = 0;
             foreach (var item in bookList)
             {
-                Console.WriteLine("{0}) {1}", i, item);
                 i++;
+                Console.WriteLine("{0}) {1}", i);
+                item.Show();                
             }
         }
 
