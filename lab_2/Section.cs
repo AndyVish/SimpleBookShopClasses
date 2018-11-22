@@ -38,10 +38,9 @@ namespace lab_2
         {
             return categoryList[index];
         }
-        //needing 
-        public void CategoryAdd(Category k)
+        
+        public void Add(Category k)
         {
-            
             categoryList.Add(k);
             countCategory++;
         }

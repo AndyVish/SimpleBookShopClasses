@@ -25,10 +25,9 @@ namespace lab_2
             Category k1 = new Category("Англ.");
             Category k2 = new Category("Фрфнц.");
             Category k3 = new Category("Итал.");
-            sectionList[1].CategoryAdd(k1);
-            sectionList[1].CategoryAdd(k2);
-            sectionList[1].CategoryAdd(k3);
-
+            sectionList[1].Add(k1);
+            sectionList[1].Add(k2);
+            sectionList[1].Add(k3);
 
             Category k4 = new Category("С++");
             Category k5 = new Category("Сsharp.");
