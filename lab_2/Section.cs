@@ -14,18 +14,19 @@ namespace lab_2
         {
             name = "sec_"+id;
             categoryList = new List<Category>();
-            countCategory++;
+            
         }
 
         public Section(string name)
         {
             this.name = name;
             categoryList = new List<Category>();
-            countCategory++;
+          
         }
+
         public int CountCategory { get { return countCategory; } }
 
-        public void CategoryAdd()
+        public override void Add()
         {
             Category category = new Category();
             category.Update();
@@ -33,13 +34,20 @@ namespace lab_2
             countCategory++;
         }
 
+        public Category GetCategory(int index)
+        {
+            return categoryList[index];
+        }
+        //needing 
         public void CategoryAdd(Category k)
         {
             
             categoryList.Add(k);
             countCategory++;
         }
-        public void CategoryRemove(int index)
+
+
+        public void Remove(int index)
         {
             categoryList.Remove(categoryList[index]);
             countCategory--;
@@ -49,17 +57,29 @@ namespace lab_2
         {
             categoryList[index].Update();
         }
+        
+        //***************************
+        public override void Remove()
+        {
+            Show();
+            int select = CheckInput(countCategory);
+            if (select != -1)
+            {
+                categoryList.Remove(categoryList[select]);
+                countCategory--;
+            }            
+        }
 
-        public void ShowCategoryList()
+        public override void Show()
         {
             int i = 0;
             foreach (var item in categoryList)
             {
                 i++;
-                Console.Write("{0})", i);
-                    item.Show();        
+                Console.WriteLine("\t{0}) {1}", i, item.Name);
             }
         }
+        //***************************
 
     }
 }

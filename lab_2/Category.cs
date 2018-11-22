@@ -16,7 +16,6 @@ namespace lab_2
             name = "sec_"+id;
             id++;
             bookList = new List<Book>();
-            countBook++;
         }
 
         public Category(string name)
@@ -24,36 +23,40 @@ namespace lab_2
             this.name = name;
             id++;
             bookList = new List<Book>();
-            countBook++;
         }
 
         public int CountBook { get { return countBook; } }
-
-
-
-        private void BookAdd()
-        {
-            Book book = new Book();
-            book.Update();
-            bookList.Add(book);
-        }
-
-        private void BookRemove(int index)
-        {
-            bookList.Remove(bookList[index]);
-        }
-
-
-        public void ShowBookList()
+                        
+        public override void Show()
         {
             int i = 0;
             foreach (var item in bookList)
             {
                 i++;
-                Console.WriteLine("{0}) {1}", i);
+                Console.Write("{0}) ", i);
                 item.Show();                
             }
         }
 
+        public override void Remove()
+        {
+            Show();
+            int select = CheckInput(countBook);
+            if (select != -1)
+            {
+                bookList.Remove(bookList[select]);
+                countBook--;
+            }
+        }
+        
+        public override void Add()
+        {
+            var book = new Book();
+           //section.Update();
+            bookList.Add(book);
+            countBook++;
+            Console.WriteLine(new string('-', 20));
+        }
+               
     }
 }

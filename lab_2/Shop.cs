@@ -8,14 +8,14 @@ namespace lab_2
 {
     enum Actions {Add, Remove, Update, Show }; 
 
-    class Shop
+    class Shop : CommonShopObject
     {
         int countSection;
         List<Section> sectionList;
         
         public Shop()
         {
-            ///!!!!  countSection = 2; - origenal
+            ///!!!!  countSection = 0; - origenal
             countSection = 2;
             sectionList = new List<Section>();
 
@@ -34,15 +34,70 @@ namespace lab_2
             Category k5 = new Category("Сsharp.");
             sectionList[0].CategoryAdd(k4);
             sectionList[0].CategoryAdd(k5);
-
-
         }
 
         public int CountSection{ get { return countSection; } }
+        public void Add(Section s)
+        {
+            sectionList.Add(s);
+            countSection++;
+        }
 
+        bool GetIndexCategory(out int index, Section sect)
+        {
+            index = -1;                
+            if (sect.CountCategory-1 != 0)
+            {
+                sect.Show();
+                index = CheckInput(sect.CountCategory);
+                if (index != -1)
+                {
+                    return true;
+                }                
+            }
+            Console.WriteLine("No category for removing!");
+            return false;
+        }
 
-        //============= SECTION BEGIN============
-        public void AddSection()
+        public Category GetCategory()
+        {
+            if (GetIndexSection(out int index))
+            {
+                var e = sectionList[index];
+                if (GetIndexCategory(out int idCt, e))
+                {
+                    return e.GetCategory(idCt);
+                }
+            }
+
+            return null;
+        }
+
+        //============= BOOK ============
+        public void AddBook()
+        {
+
+        }
+
+        public void PutChooseMessage()
+        {
+                Show();
+                Console.Write("Choose number of section ->");
+        }
+
+        //***************************
+        
+        public override void Remove()
+        {
+            if (GetIndexSection(out int index))
+            {
+                sectionList.Remove(sectionList[index]);
+                countSection--;
+            }
+            Console.WriteLine(new string('-', 20));
+        }
+
+        public override void Add()
         {
             var section = new Section();
             section.Update();
@@ -51,13 +106,28 @@ namespace lab_2
             Console.WriteLine(new string('-', 20));
         }
 
-        public void AddSection(Section s)
+
+        public Section GetSection()
         {
-            sectionList.Add(s);
-            countSection++;
+            if(GetIndexSection(out int index))
+            {
+                return sectionList[index];
+            }
+
+            return null;
         }
 
+        public override void Show()
+        {
+            int i = 0; 
+            foreach (var item in sectionList)
+            {
+                i++;
+                Console.WriteLine($"\t{i}) {item.Name}");                
+            }
+        }
 
+        
         bool GetIndexSection(out int index)
         {
             index = -1;
@@ -76,142 +146,7 @@ namespace lab_2
             }
             return false;
         }
-
-        public void RemoveSecton()
-        {
-            if (GetIndexSection(out int index))
-            {
-                sectionList.Remove(sectionList[index]);
-                countSection--;
-            }
-            Console.WriteLine(new string('-', 20));
-        }
-
-        public int ShowSectionList()
-        {
-            int i = 0;
-            foreach (var item in sectionList)
-            {
-                i++;
-                Console.Write($"{i})");
-                item.Show();
-            }            
-            return i;
-        }
-
-        public void UpdateSection()
-        {
-            if (GetIndexSection(out int index))
-            {
-                sectionList[index].Update();
-                countSection--;
-            }
-            Console.WriteLine(new string('-', 20));
-        }
-
-
-        //============= CATEGORY ============
-        public void AddCategory()
-        {
-            PutChooseMessage();
-            var userChoose = CheckInput(CountSection);
-
-            if (userChoose != -1)
-            {
-             sectionList[userChoose].CategoryAdd();                
-            }
-        }
-
-        public void ShowCategory()
-        {
-            PutChooseMessage();
-            var userChoose = CheckInput(CountSection);
-
-            if (userChoose != -1)
-            {
-                sectionList[userChoose].ShowCategoryList();
-            }
-        }
-
-        bool GetIndexCategory(out int index, Section sect)
-        {
-            index = -1;                
-            if (sect.CountCategory-1 != 0)
-            {
-                sect.ShowCategoryList();
-                index = CheckInput(sect.CountCategory);
-                if (index != -1)
-                {
-                    return true;
-                }                
-            }
-            Console.WriteLine("No category for removing!");
-            return false;
-        }
-
-        public void RemoveCategory()
-        {
-            if (GetIndexSection(out int tmpId))
-            {
-                var section = sectionList[tmpId];
-                if (GetIndexCategory(out int index, section))
-                {
-                    section.CategoryRemove(index);
-                }
-            }
-        }
-
-
-        //============= BOOK ============
-        public void AddBook()
-        {
-
-        }
-
-        
-        
-        public int CheckInput(int countObj)
-        {
-            int exit = 1;
-            int  choose=-1;
-            while (exit == 1)
-            {
-                if (int.TryParse(Console.ReadLine(), out choose))
-                {
-                    if (choose >= 0 && choose <= countObj)
-                    {
-                        exit = 0;
-                        choose--;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Entered uncorrect number. Try again? (y/n)", countObj);
-                        if (Console.ReadLine() == "n")
-                        {
-                            exit = 0;
-                            choose =  -1;
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Entered uncorrect number. Try again? (y/n)");
-                    if (Console.ReadLine() == "n")
-                    {
-                        exit = 0;
-                        choose = -1;
-                    }
-                }
-            }
-
-            return choose;
-        }
-
-        public void PutChooseMessage()
-        {
-                ShowSectionList();
-                Console.Write("Choose number of section ->");
-        }
+        //***************************
     }
 
 } 
